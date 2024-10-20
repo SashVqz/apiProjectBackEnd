@@ -1,0 +1,79 @@
+// This is a simple example of how to use the API (api-user)
+
+### Register Admin --> token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjJiNzFkZTRiMDBjZjU4NThjMWEyYWEiLCJpYXQiOjE3MTQxMjMyMzAsImV4cCI6MTcxNDEzMDQzMH0.5YAD25S0AqXM-771Z2X2ctP5DK_xxNqqVy6E4-TPK-s
+POST http://localhost:3000/api-user/registerAdmin HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "admin@admin.com",
+    "name": "admin",
+    "password": "Password123!",
+    "age": 25,
+    "city": "admin",
+    "interests": "admin",
+    "allowsReceivingOffers": false,
+    "role": "admin"
+}
+
+### Register User --> token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOnsibmFtZSI6IkpvaG4gRG9lIiwiZW1haWwiOiJleGFtcGxlQGV4YW1wbGUuY29tIiwiYWdlIjoiMjUiLCJjaXR5IjoiTmV3IFlvcmsiLCJpbnRlcmVzdHMiOiJQcm9ncmFtbWluZyIsImFsbG93c1JlY2VpdmluZ09mZmVycyI6dHJ1ZSwicm9sZSI6InVzZXIiLCJfaWQiOiI2NjJiNzBjNjI2ZTNlYmJlYTlkNzAzNGIiLCJkZWxldGVkIjpmYWxzZSwiY3JlYXRlZEF0IjoiMjAyNC0wNC0yNlQwOToxNTo1MC43MzlaIiwidXBkYXRlZEF0IjoiMjAyNC0wNC0yNlQwOToxNTo1MC43MzlaIn0sImlhdCI6MTcxNDEyMjk1MCwiZXhwIjoxNzE0MTMwMTUwfQ.0sTRkI2Bt6Gt4Cv9fwiV-dSd6JneODsHaVntP9lsglY
+POST http://localhost:3000/api-user/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "user8@exale.com",
+    "name": "Doe",
+    "password": "Password123!",
+    "age": 25,
+    "city": "NewYork",
+    "interests": "Programming",
+    "allowsReceivingOffers": true,
+    "role": "user"
+}
+
+### Login Admin --> token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOnsiX2lkIjoiNjYyYjcxZGU0YjAwY2Y1ODU4YzFhMmFhIiwibmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNzE0MTIzNjA0LCJleHAiOjE3MTQxMzA4MDR9.RGj5zZf8FoGNXzDkzYiiuCd5M5mEllYTxLiUxmF3S6c
+POST http://localhost:3000/api-user/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "admin@admin.com",
+    "password": "Password123!"
+}
+
+### Login User --> token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOnsiX2lkIjoiNjYyYjcwYzYyNmUzZWJiZWE5ZDcwMzRiIiwibmFtZSI6IkpvaG4gRG9lIiwiZW1haWwiOiJleGFtcGxlQGV4YW1wbGUuY29tIiwicm9sZSI6InVzZXIifSwiaWF0IjoxNzE0MTIzNjMzLCJleHAiOjE3MTQxMzA4MzN9.pUJpPReaPsk1JQjwbxgLY0uJIWIeVHrtGBM9lXJf_W0
+POST http://localhost:3000/api-user/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "user8@exale.com",
+    "password": "Password123!"
+}
+
+### PUT User --> update user data
+PUT http://localhost:3000/api-user/user/662e1005267ba752a61f8367 HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "example@example.com",
+    "name": "John Doe",
+    "password": "Password123!",
+    "age": 23,
+    "city": "Miami",
+    "interests": "Programming",
+    "allowsReceivingOffers": true,
+    "role": "user"
+}
+
+### Patch User --> softupdate user data
+PATCH http://localhost:3000/api-user/user/patch/663b30fd4c4799c906ac5ce3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "allowsReceivingOffers": true
+}
+
+### DELETE User --> delete user data physically
+DELETE http://localhost:3000/api-user/user/662e1077267ba752a61f8377 HTTP/1.1
+
+### GET Users (shop) --> get users by city and interests (token shop loged in)
+GET http://localhost:3000/api-user/userShop?city=NewYork&interests=Programming HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOnsiX2lkIjoiNjYzMjBlN2RmNmNmNDkzYzFhN2Y4MTlkIn0sImlhdCI6MTcxNTE1NDg1NCwiZXhwIjoxNzE1MTYyMDU0fQ.H7L_hm6ber6kObi4AAvw6G_v8vEIEI6AC3lynWe5lfM
